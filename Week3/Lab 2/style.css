@@ -1,0 +1,20 @@
+html, body{
+    background-color: pink;
+    color:rebeccapurple;
+}
+h2{
+    margin: auto;
+    border: 10px solid maroon;
+    padding: 40px;
+    background-color:darksalmon;
+    font-family: Arial;
+    text-align: center;
+}
+p{
+    width: 400px;
+    margin-top: 100px;   
+    border: 15px dashed violet; 
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+
+}
