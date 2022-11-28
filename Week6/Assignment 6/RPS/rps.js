@@ -30,7 +30,7 @@ function play(pChoice)
 {
     var cChoice = Math.floor(Math.random()*2.999999)
     
-    alert(rps[pChoice] + " " + rps[cChoice]) 
+    ctx.fillText(rps[pChoice] + " " + rps[cChoice]) 
 
     switch(pChoice){
         case 0:
