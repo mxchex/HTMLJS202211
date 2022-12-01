@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <script>
-        var rock = new Audio();
-        rock.src = "rock.mp3";
-    </script>
+    
     <style>
         canvas{
             border: 1px solid black;
@@ -27,11 +24,16 @@
     <div id="container">
         <h1 style="color: white;">Rock Paper Scissors</h1>
         <nav>
-            <button id="rock" onmousedown="rock.play(">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
-            <button id="shoot">Shoot!</button>
+            <audio id="rocks" src="audio/rock.mp3" preload="auto"></audio>
+            <audio id="papers" src="audio/paper.mp3" preload="auto"></audio>
+            <audio id="scissors" src="audio/scissor.mp3" preload="auto"></audio>
+            <audio id="shoots" src="audio/shoot.mp3" preload="auto"></audio>
+            <button id="rock" onclick="document.getElementById('rocks').play;">Rock</button>
+            <button id="paper" onclick="document.getElementById('papers').play;">Paper</button>
+            <button id="scissors" onclick="document.getElementById('scissors').play;">Scissors</button>
+            <button id="shoot" onclick="document.getElementById('shoots').play;">Shoot!</button>
         </nav>
+
         <canvas id="c" width="800" height="600"></canvas>
     </div>
     <script src="rps.js"></script>
