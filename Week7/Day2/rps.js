@@ -11,7 +11,10 @@ var hscissors = new Image();
 var shoot = new Image();
 var hshoot = new Image();
 
-var rockSound = new Audio('file.mp3');
+var rockSound = new Audio('rock.mp3');
+var paperSound = new Audio('paper.mp3');
+var scissorSound = new Audio('scissor.mp3');
+var shootSound = new Audio('shoot.mp3');
 
 rock.src = "images/rock.jpg"
 paper.src = "images/paper.jpg"
@@ -111,7 +114,7 @@ function playGame(playerChoice) {
 switch (playerChoice) {
     case "rock":
         rockSound.play();
-        if (cpuChoice == 0) {
+        if (cpuChoice == 0){
             //rock
             //alert("CPU chose Rock. It's a tie!");
             results = "CPU chose Rock. It's a tie!";
