@@ -7,7 +7,8 @@ var start = 58;
 var finish = 956;
 var carPos = 2;
 var speed = 3;
-var carWidth = 50;
+var carWidth = 350;
+var carHeight = 300;
 
 var startFuel = randomNumber(canvas.width,600);
 var fuel = startFuel;
@@ -20,7 +21,7 @@ var frames = fps;
 
 //load game sprites
 var carSprite = new Image();
-carSprite.src = "images/wario.png";
+carSprite.src = "images/cat.png";
 
 carSprite.onload = function(){
     main();
@@ -43,7 +44,7 @@ function keyPressDown(e){
 function main(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     if(gameOver){
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.font = "30px Garamond";
         ctx.textAlign = "center";
         ctx.fillText("Press Space to Start", canvas.width/2, canvas.height/2);
@@ -86,12 +87,12 @@ function drawCar(){
     //draw a car
     //ctx.fillStyle = "red";
     //ctx.fillRect(carPos,canvas.height/2,carWidth,20);
-    ctx.drawImage(carSprite, carPos, canvas.height/2, carWidth, 20)
+    ctx.drawImage(carSprite, carPos, canvas.height/2, carWidth, carHeight)
 }
 
 function drawFuelBar(){
     var currentBarWidth = fuelBarWidth * (fuel/startFuel);
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.fillRect(start, 30, fuelBarWidth, 10);
     ctx.font = "20px Garamond";
     ctx.fillText("Fuel", start, 25);
@@ -103,12 +104,12 @@ function drawFuelBar(){
 
 function drawResults(){
     if(carPos + carWidth > finish){   
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.font = "25px Garamond";
         ctx.textAlign = "center";
         ctx.fillText("You made it to te finish... You Win!", canvas.width/2, canvas.height/2);
     }else{
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.font = "25px Garamond";
         ctx.textAlign = "center";
         ctx.fillText("You ran out of fuel... You Lose!", canvas.width/2, canvas.height/2);
@@ -128,7 +129,7 @@ function runStartTimer(){
 }
 
 function drawStartTimer(){ 
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.font = "25px Garamond";
     ctx.textAlign = "center";
     ctx.fillText(seconds, canvas.width/2, canvas.height/2);
