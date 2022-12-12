@@ -1,0 +1,21 @@
+html, body{
+    display: flex;
+    justify-content: center;
+    background-image: url(images/sky.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+div{
+content: center;
+font: planet;
+color: beige;
+}
+canvas{
+    border: 3px solid blue;
+}
+header{
+    font-family: 'Orbitron', sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Zen+Dots&display=swap');
