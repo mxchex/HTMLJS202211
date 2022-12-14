@@ -173,10 +173,10 @@ function PlayerShip(){
             }
             //draw the flame
             ctx.beginPath();
-            ctx.moveTo(-this.flameLength, 0);
+            ctx.moveTo(0, this.flameLength);
             ctx.lineTo(5, 5);
-            ctx.lineTo(5, -5);
-            ctx.lineTo(-this.flameLength, 0);
+            ctx.lineTo(-5, 5);
+            ctx.lineTo(0, this.flameLength);
             ctx.closePath();
             ctx.fill();
             ctx.restore();
