@@ -18,4 +18,7 @@ canvas{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+h1{
+    font-family: 'Rubik Spray Paint', cursive;
+}
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap');

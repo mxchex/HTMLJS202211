@@ -13,6 +13,17 @@ var asteroids = [];
 
 //player ship variables
 var ship = new PlayerShip();
+var ufo = new Image();
+ufo.src = "images/ufo.png";
+var startMenuScreen = new Image();
+startMenuScreen.src = "images/startmenu.png";
+var gameOverScreen = new Image();
+gameOverScreen.src = "images/gameover.png";
+var highScore = new Image();
+highScore.src = "images/highscore.png";
+var rocks = new Image();
+rocks.src = "images/asteroid.png";
+
 
 //create keyboard event handlers
 document.addEventListener("keydown", pressKeyDown)
@@ -127,6 +138,7 @@ function pressKeyUp(e){
 function Asteroid(){
     //properties to draw the asteroid
     this.radius = randomRange(15, 2);
+    this.radius = randomRange(15, 2);
     this.x = randomRange(canvas.width - this.radius, this.radius);
     this.y = randomRange(canvas.height - this.radius, this.radius);
     this.vy = randomRange(10, 5);
@@ -136,19 +148,21 @@ function Asteroid(){
     this.drawAsteroid = function(){
         ctx.save();
         ctx.beginPath();
-        ctx.fillStyle = this.color;
+        //ctx.fillStyle = this.color;
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.fill();
+        ctx.drawImage(rocks, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
         ctx.restore();
     }
 }
 
 function PlayerShip(){
+    
     this.x = canvas.width/2;
     this.y = canvas.height/2;
-    this.width = 20;
-    this.height = 20;
+    this.width = 30;
+    this.height = 30;
     this.up = false;
     this.down = false;
     this.left = false;
@@ -172,25 +186,28 @@ function PlayerShip(){
                 ctx.fillStyle = "orange";
             }
             //draw the flame
-            ctx.beginPath();
-            ctx.moveTo(0, this.flameLength);
-            ctx.lineTo(5, 5);
-            ctx.lineTo(-5, 5);
-            ctx.lineTo(0, this.flameLength);
-            ctx.closePath();
-            ctx.fill();
-            ctx.restore();
+            // ctx.beginPath()
+            // ctx.moveTo(0, this.flameLength)
+            // ctx.lineTo(5, 5)
+            // ctx.lineTo(-5, 5)
+            // ctx.lineTo(0, this.flameLength)
+            // ctx.closePath()
+            // ctx.fill()
+            // ctx.drawImage(ufo, 0, 0, this.width, this.height)
+            ctx.restore()
         }
 
         //draw the ship
         ctx.fillStyle = "red";
+
         ctx.beginPath();
-        ctx.moveTo(0, -10);
-        ctx.lineTo(0,10)
-        ctx.lineTo(25,0)
-        ctx.lineTo(0,-10)
-        ctx.closePath();
-        ctx.fill();
+        //ctx.moveTo(0, -10);
+        //ctx.lineTo(10,10)
+        //ctx.lineTo(-10,10)
+        //ctx.lineTo(0,-10)
+        //ctx.closePath();
+       // ctx.fill();
+        ctx.drawImage(ufo, 0, 0, this.width, this.height)
         ctx.restore();
     }
 
@@ -246,12 +263,13 @@ function main(){
 gameState[0] = function(){
     //code for main menu
     ctx.save();
-    ctx.font = "30px arial";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center";
-    ctx.fillText("Asteroid Avoider", canvas.width/2, canvas.height/2 - 30);
-    ctx.font = "15px arial";
-    ctx.fillText("Press Space to Start", canvas.width/2, canvas.height/2 + 20);
+    //ctx.font = "30px arial";
+    //ctx.fillStyle = "white";
+    //ctx.textAlign = "center";
+    //ctx.fillText("Asteroid Avoider", canvas.width/2, canvas.height/2 - 30);
+    //ctx.font = "15px arial";
+    ctx.drawImage(startMenuScreen,0,0);
+    //ctx.fillText("Press Space to Start", canvas.width/2, canvas.height/2 + 20);
     ctx.restore();
 }
 
@@ -264,7 +282,7 @@ gameState[1] = function(){
     ctx.save();
     ctx.font = "15px Arial";
     ctx.fillStyle = "white";
-    ctx.fillText("Score: " + score.toString(), canvas.width - 150, 30)
+    ctx.fillText(score.toString(), canvas.width - 150, 30)
     ctx.restore();
 
     //vertical movement
@@ -298,12 +316,12 @@ gameState[1] = function(){
         }
 
 
-        if(asteroids[i].y > canvas.height + asteroids[i].radius){
-            asteroids[i].y = randomRange(canvas.height - asteroids[i].radius, asteroids[i].radius) - canvas.height;
-            asteroids[i].x = randomRange(canvas.width - asteroids[i].radius, asteroids[i].radius);
+        if(asteroids[i].x < -asteroids[i].radius){
+            asteroids[i].y = randomRange(canvas.height - asteroids[i].radius, asteroids[i].radius);
+            asteroids[i].x = randomRange(canvas.width - asteroids[i].radius, asteroids[i].radius) + canvas.width;
         }
         
-        asteroids[i].y += asteroids[i].vy;
+        asteroids[i].x -= asteroids[i].vy;
         asteroids[i].drawAsteroid();
 
     }
@@ -318,19 +336,22 @@ gameState[1] = function(){
 
 //gameover state
 gameState[2] = function(){
+    
+    ctx.drawImage(gameOverScreen,0,0,canvas.width,canvas.height); 
     //code for game over menu
     if(score > highScore){
+
         highScore = score;
 
         ctx.save();
         ctx.font = "30px arial";
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText("Game Over, Your Score was: " + score.toString(), canvas.width/2, canvas.height/2 - 60);
-        ctx.fillText("Your New High Score is " + highScore.toString(), canvas.width/2, canvas.height/2 - 30);
-        ctx.fillText("New Record!", canvas.width/2, canvas.height/2);
-        ctx.font = "15px arial";
-        ctx.fillText("Press Space to Play Again", canvas.width/2, canvas.height/2 + 20);
+        //ctx.fillText(+ score.toString(), canvas.width/2 + 50, canvas.height/2 )
+        //ctx.fillText(+ highScore.toString(), canvas.width/2 + 60, canvas.height/2 - 10)
+        //ctx.fillText("New Record!", canvas.width/2, canvas.height/2);
+        //ctx.font = "15px arial";
+        //ctx.fillText("Press Space to Play Again", canvas.width/2, canvas.height/2 + 20);
         ctx.restore();
     }else{
     
@@ -338,10 +359,10 @@ gameState[2] = function(){
         ctx.font = "30px arial";
         ctx.fillStyle = "white";
         ctx.textAlign = "center";
-        ctx.fillText("Game Over, Your Score was: " + score.toString(), canvas.width/2, canvas.height/2 - 60);
-        ctx.fillText("Your High Score is " + highScore.toString(), canvas.width/2, canvas.height/2 - 30);
-        ctx.font = "15px arial";
-        ctx.fillText("Press Space to Play Again", canvas.width/2, canvas.height/2 + 20);
+        //ctx.fillText("y:" + score.toString(), canvas.width/2, canvas.height/2 - 60)
+        //ctx.fillText( + highScore.toString(), canvas.width/2, canvas.height/2 - 30)
+        //ctx.font = "15px arial";
+        //ctx.fillText("Press Space to Play Again", canvas.width/2, canvas.height/2 + 20);
         ctx.restore();
 }
 }
