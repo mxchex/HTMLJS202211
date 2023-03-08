@@ -66,12 +66,15 @@ sky.img.src = `images/sky.png`
 */
 
 //repeating background
-var rbg = new GameObject({x:level.x, y:level.y, width:1024, height:512})
+var rbg = new GameObject({x:level.x, y:level.y, width:4096, height:512})
 rbg.img.src=`images/hills.png`
+
 
 //middleground
 var bg = new GameObject({x:level.x,y:level.y, width:canvas.width*4, height:canvas.height})
 bg.img.src=`images/bgfull.png`
+
+
 
 /*------------------vvBULLET STUFFvv----------------------*/
 
