@@ -59,16 +59,14 @@ levelItems.add([caveBack.grid, ground, plat, cave.grid]);
 var sky = new GameObject({width:canvas.width, height:canvas.height, color:"cyan"})
 sky.img.src = `images/sky.png`
 
-/*
- 	//Not used, unless you want a 4th level of paralax
-	var clouds = new GameObject({x:level.x,y:level.y})
-	clouds.img.src=`images/ground.png`
-*/
-
 //repeating background
 var rbg = new GameObject({x:level.x, y:level.y, width:4096, height:512})
 rbg.img.src=`images/hills.png`
 
+ 	//Not used, unless you want a 4th level of paralax
+	 var tavern = new GameObject({x:level.x,y:level.y, width:canvas.width*4, height:canvas.height})
+	 tavern.img.src=`images/platform.png`
+	 tavern.world=level
 
 //middleground
 var bg = new GameObject({x:level.x,y:level.y, width:canvas.width*4, height:canvas.height})
@@ -87,10 +85,10 @@ var currentBullet = 0;
 for(let i=0; i<100; i++)
 {
 	bullets[i] = new GameObject({width:64, height:64})
-	//bullets[i].img.src="images/mrt.jpg"
-	bullets[i].makeSprite(playerData)
+	bullets[i].img.src="images/fire.png"
+	//bullets[i].makeSprite(playerData)
 	bullets[i].y=-10000
-	bullets[i].changeState(`walk`)
+	//bullets[i].changeState(`walk`)
 }
 
 //console.log(bullets)
@@ -274,7 +272,9 @@ gameStates[`level1`] = function()
 	rbg.drawStaticImage([-rbg.width,0]);
 	rbg.drawStaticImage([rbg.width,0]);
 
-	//renders the midground
+tavern.drawStaticImage([0,0])
+	
+//renders the midground
 	bg.drawStaticImage([0,0]);
 	
 	//alternate methd for rendering the repeating background
