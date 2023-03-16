@@ -272,16 +272,17 @@ gameStates[`level1`] = function()
 	rbg.drawStaticImage([-rbg.width,0]);
 	rbg.drawStaticImage([rbg.width,0]);
 
-tavern.drawStaticImage([0,0])
 	
 //renders the midground
 	bg.drawStaticImage([0,0]);
+	
 	
 	//alternate methd for rendering the repeating background
 	//rbg.render(`drawStaticImage`, [0,0])
 
 	//renders the objects in the rect group
 	rects.render(`drawRect`, [0,0,100,100])
+	tavern.drawStaticImage([0,0])
 	
 	/*----Used for debugging----*/
 	/*context.beginPath()
