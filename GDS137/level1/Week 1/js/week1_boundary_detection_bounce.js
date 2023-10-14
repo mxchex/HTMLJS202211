@@ -31,24 +31,28 @@ function animate()
 	{
 		player.x = canvas.width - player.width/2
 		player.vx = -player.vx;	
+		player.color = "green";
 	}
 
 	if(player.x < player.width/2)
 	{
 		player.x = player.width/2;
-		player.vx = -player.vx;	
+		player.vx = -player.vx;
+		player.color = "red";
 	}
 
 	if(player.y > canvas.height - player.height/2)
 	{
 		player.y = canvas.height - player.height/2
 		player.vy = -player.vy;	
+		player.color = "yellow";
 	}
 
 	if(player.y < player.height/2)
 	{
 		player.y = player.height/2;
 		player.vy = -player.vy;	
+		player.color = "purple";
 	}
 	//---------------------------------------------------
 	
